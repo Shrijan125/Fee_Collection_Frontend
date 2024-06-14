@@ -14,8 +14,9 @@ const Home = () => {
   return (
     <div>
    <TopBar></TopBar>
-   <div className='flex '>
+   <div className='flex'>
    <SideBar></SideBar>
+   
    <Routes>
      <Route path='/*' element={<FeeCollection/>}></Route>
      <Route path='/todayscollection' element={<TodaysCollection></TodaysCollection>}></Route>
