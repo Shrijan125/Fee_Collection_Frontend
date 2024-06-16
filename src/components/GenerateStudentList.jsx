@@ -1,9 +1,7 @@
-import React from 'react'
+import React from 'react';
 
 const GenerateStudentList = () => {
-  return (
-    <div>GenerateStudentList</div>
-  )
-}
+  return <div>GenerateStudentList</div>;
+};
 
-export default GenerateStudentList
+export default GenerateStudentList;

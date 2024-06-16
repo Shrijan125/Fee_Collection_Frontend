@@ -1,9 +1,7 @@
-import React from 'react'
+import React from 'react';
 
 const GenerateCollection = () => {
-  return (
-    <div>GenerateCollection</div>
-  )
-}
+  return <div>GenerateCollection</div>;
+};
 
-export default GenerateCollection
+export default GenerateCollection;
