@@ -23,7 +23,7 @@ const FeeStructure = () => {
 
   useEffect(() => {
     const url = BASE_URL + '/admin/getFeeStructure';
-
+    setLoading(true);
     axios
       .get(url)
       .then(response => {
@@ -33,7 +33,7 @@ const FeeStructure = () => {
         for (let i = 0; i < reqarr.length; i++) {
           reqarr[i].unshift(grade[i]);
         }
-        setData(response.data.data);
+        setData([...data, ...response.data.data]);
         setCsvData(response.data.data.map(item => item.amount));
         setLoading(false);
       })
@@ -41,6 +41,7 @@ const FeeStructure = () => {
         toast.error('Something went wrong', { position: 'top-right' });
         setLoading(false);
       });
+    setLoading(false);
   }, []);
 
   async function handlePrint() {
@@ -129,6 +130,7 @@ const FeeStructure = () => {
               <Button text={'Download'}></Button>
             </CSVLink>
           </div>
+          <Toaster/>
         </div>
       )}
     </div>

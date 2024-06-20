@@ -122,6 +122,7 @@ const AddStudent = () => {
           defaultValue={selectedOption}
           onChange={setSelectedOption}
           options={grades}
+          value={selectedOption}
         ></Select>
       </div>
       {loading ? (

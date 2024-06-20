@@ -44,4 +44,10 @@ const csvmonthsHeader = [
   'DEC',
 ];
 
-export { grades, months, csvmonthsHeader };
+const csvTodayCollectionHeader= ['AdmNo','Name','TransID','UTRNo.','Amount'];
+const csvGeneratedDuesHeader=['AdmNo','Name','Grade','Phone','Amount'];
+const csvGenerateCollectionHeader= ['AdmNo','Name','TransID','UTRNo.','Amount','Date'];
+
+export { grades, months, csvmonthsHeader,csvTodayCollectionHeader,csvGeneratedDuesHeader,csvGenerateCollectionHeader };
+
+

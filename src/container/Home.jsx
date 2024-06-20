@@ -11,6 +11,8 @@ import AddStudent from '../components/AddStudent';
 import GenerateStudentList from '../components/GenerateStudentList';
 import FeeStructure from '../components/FeeStructure';
 import UpdateFee from '../components/UpdateFee';
+import GeneratedDues from '../components/GeneratedDues';
+import GeneratedCollection from '../components/GeneratedCollection';
 
 const Home = () => {
   return (
@@ -47,6 +49,8 @@ const Home = () => {
             path="/feestructure"
             element={<FeeStructure></FeeStructure>}
           ></Route>
+          <Route path='/generatedDues' element={<GeneratedDues></GeneratedDues>}></Route>
+          <Route path='/generatedCollection' element={<GeneratedCollection></GeneratedCollection>}></Route>
         </Routes>
       </div>
     </div>
