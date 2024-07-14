@@ -6,14 +6,11 @@ import toast, { Toaster } from 'react-hot-toast';
 import Button from './Button';
 import { useNavigate } from 'react-router-dom';
 import { CSVLink } from 'react-csv';
-import { csvmonthsHeader } from '../data';
 
 const FeeStructure = () => {
   const [data, setData] = useState([]);
 
   const [loading, setLoading] = useState(true);
-
-  const [csvdata, setCsvData] = useState([]);
 
   const navigate = useNavigate();
 
@@ -28,19 +25,12 @@ const FeeStructure = () => {
       .get(url)
       .then(response => {
         const rep = response.data.data;
-        const reqarr = rep.map(element => element.amount);
-        const grade = rep.map(element => element.grade);
-        for (let i = 0; i < reqarr.length; i++) {
-          reqarr[i].unshift(grade[i]);
-        }
-        setData([...data, ...response.data.data]);
-        setCsvData(response.data.data.map(item => item.amount));
-        setLoading(false);
+        setData([...data, ...rep]);
       })
       .catch(error => {
         toast.error('Something went wrong', { position: 'top-right' });
-        setLoading(false);
-      });
+      })
+      .finally(setLoading(false));
     setLoading(false);
   }, []);
 
@@ -56,64 +46,67 @@ const FeeStructure = () => {
         <div className="mx-6 mt-16 print:mx-0">
           <table className="w-full border-2 table-fixed border-light print:border-black">
             <thead>
-              <tr className="bg-appBar print:bg-none ">
-                <th className="text-3xl border text-light print:text-black print:text-xl print:border-black"></th>
+              <tr className=" bg-appBar print:bg-none">
+                <th className="text-3xl border text-light print:text-black print:text-xl print:border-black">
+                  Class
+                </th>
                 <th className="text-3xl border text-light print:text-black print:text-xl print:border-black ">
-                  JAN
+                  Prosp & RegFee
                 </th>
                 <th className="text-3xl border text-light print:text-black print:text-xl print:border-black">
-                  FEB
+                  Adm Fee
                 </th>
                 <th className="text-3xl border text-light print:text-black print:text-xl print:border-black">
-                  MAR
+                  Annual Charge
                 </th>
                 <th className="text-3xl border text-light print:text-black print:text-xl print:border-black">
-                  APR
+                  Tuition Fee
                 </th>
                 <th className="text-3xl border text-light print:text-black print:text-xl print:border-black">
-                  MAY
+                  Lab Charge
                 </th>
                 <th className="text-3xl border text-light print:text-black print:text-xl print:border-black">
-                  JUN
+                  Stat.Fee
                 </th>
                 <th className="text-3xl border text-light print:text-black print:text-xl print:border-black">
-                  JUL
+                  Exam Fee
                 </th>
                 <th className="text-3xl border text-light print:text-black print:text-xl print:border-black">
-                  AUG
-                </th>
-                <th className="text-3xl border text-light print:text-black print:text-xl print:border-black">
-                  SEP
-                </th>
-                <th className="text-3xl border text-light print:text-black print:text-xl print:border-black">
-                  OCT
-                </th>
-                <th className="text-3xl border text-light print:text-black print:text-xl print:border-black">
-                  NOV
-                </th>
-                <th className="text-3xl border text-light print:text-black print:text-xl print:border-black">
-                  DEC
+                  Total Fee
                 </th>
               </tr>
             </thead>
             <tbody>
               {data.map(item => {
-                const trimmedData = item.amount.slice(1, item.amount.length);
                 return (
                   <tr key={item.grade}>
-                    <td className="text-3xl font-bold text-center border text-light bg-appBar print:text-black print:text-xl print:bg-none print:border-black">
+                    <td className="text-3xl text-center border bg-appBar print:bg-none text-light print:text-black print:text-xl print:border-black ">
                       {item.grade}
                     </td>
-                    {trimmedData.map((arr, index) => {
-                      return (
-                        <td
-                          className="text-xl text-center transition-all duration-300 delay-150 border text-light hover:cursor-pointer hover:ease-in-out hover:bg-light hover:border-appBar hover:text-appBar print:text-black print:text-xl print:border-black"
-                          key={`${item.grade}-${index}`} // Unique key combining grade and index
-                        >
-                          {arr}
-                        </td>
-                      );
-                    })}
+                    <td className="text-xl text-center transition-all duration-300 'hover:cursor-pointer hover:ease-in-out hover:bg-light hover:border-appBar ' delay-150 border hover:text-appBar text-light print:text-black print:text-xl print:border-black">
+                      {item.ProsReg}
+                    </td>
+                    <td className="text-xl text-center transition-all duration-300 'hover:cursor-pointer hover:ease-in-out hover:bg-light hover:border-appBar ' delay-150 border hover:text-appBar text-light print:text-black print:text-xl print:border-black">
+                      {item.AdmFee}
+                    </td>
+                    <td className="text-xl text-center transition-all duration-300 'hover:cursor-pointer hover:ease-in-out hover:bg-light hover:border-appBar ' delay-150 border hover:text-appBar text-light print:text-black print:text-xl print:border-black">
+                      {item.AnnualCharge}
+                    </td>
+                    <td className="text-xl text-center transition-all duration-300 'hover:cursor-pointer hover:ease-in-out hover:bg-light hover:border-appBar ' delay-150 border hover:text-appBar text-light print:text-black print:text-xl print:border-black">
+                      {item.TuitionFee}
+                    </td>
+                    <td className="text-xl text-center transition-all duration-300 'hover:cursor-pointer hover:ease-in-out hover:bg-light hover:border-appBar ' delay-150 border hover:text-appBar text-light print:text-black print:text-xl print:border-black">
+                      {item.LabCharge}
+                    </td>
+                    <td className="text-xl text-center transition-all duration-300 'hover:cursor-pointer hover:ease-in-out hover:bg-light hover:border-appBar ' delay-150 border hover:text-appBar text-light print:text-black print:text-xl print:border-black">
+                      {item.StationaryFee}
+                    </td>
+                    <td className="text-xl text-center transition-all duration-300 'hover:cursor-pointer hover:ease-in-out hover:bg-light hover:border-appBar ' delay-150 border hover:text-appBar text-light print:text-black print:text-xl print:border-black">
+                      {item.ExamFee}
+                    </td>
+                    <td className="text-xl text-center transition-all duration-300 'hover:cursor-pointer hover:ease-in-out hover:bg-light hover:border-appBar ' delay-150 border hover:text-appBar text-light print:text-black print:text-xl print:border-black">
+                      {item.TotalFee}
+                    </td>
                   </tr>
                 );
               })}
@@ -123,14 +116,18 @@ const FeeStructure = () => {
             <Button text={'Update'} onClick={clickHandler}></Button>
             <Button text={'Print'} onClick={handlePrint}></Button>
             <CSVLink
-              data={csvdata}
-              headers={csvmonthsHeader}
+              data={data}
+              // headers={csvmonthsHeader}
               filename={'FeeStructure.csv'}
             >
               <Button text={'Download'}></Button>
             </CSVLink>
           </div>
-          <Toaster/>
+          <p className="mt-5 text-2xl text-center text-light print:text-black">
+            <span className="text-3xl text-appBar">Note:</span> Stationary Fee
+            and Exam Fee are not part of total fee.
+          </p>
+          <Toaster />
         </div>
       )}
     </div>

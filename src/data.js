@@ -1,4 +1,8 @@
 const grades = [
+  { value: 'Pre-Nur', label: 'Pre-Nur' },
+  { value: 'Nur', label: 'Nur' },
+  { value: 'KG-I', label: 'KG-I' },
+  { value: 'KG-II', label: 'KG-II' },
   { value: 'I', label: 'I' },
   { value: 'II', label: 'II' },
   { value: 'III', label: 'III' },
@@ -13,10 +17,13 @@ const grades = [
   { value: 'XII', label: 'XII' },
 ];
 
+const avlgender = [
+  { label: 'M', value: 'M' },
+  { label: 'F', value: 'F' },
+];
+
 const months = [
-  { value: '0', label: 'JAN' },
-  { value: '1', label: 'FEB' },
-  { value: '2', label: 'MAR' },
+  
   { value: '3', label: 'APR' },
   { value: '4', label: 'MAY' },
   { value: '5', label: 'JUN' },
@@ -26,6 +33,9 @@ const months = [
   { value: '9', label: 'OCT' },
   { value: '10', label: 'NOV' },
   { value: '11', label: 'DEC' },
+  { value: '0', label: 'JAN' },
+  { value: '1', label: 'FEB' },
+  { value: '2', label: 'MAR' },
 ];
 
 const csvmonthsHeader = [
@@ -44,10 +54,29 @@ const csvmonthsHeader = [
   'DEC',
 ];
 
-const csvTodayCollectionHeader= ['AdmNo','Name','TransID','UTRNo.','Amount'];
-const csvGeneratedDuesHeader=['AdmNo','Name','Grade','Phone','Amount'];
-const csvGenerateCollectionHeader= ['AdmNo','Name','TransID','UTRNo.','Amount','Date'];
+const csvTodayCollectionHeader = [
+  'AdmNo',
+  'Name',
+  'TransID',
+  'UTRNo.',
+  'Amount',
+];
+const csvGeneratedDuesHeader = ['AdmNo', 'Name', 'Grade', 'Phone', 'Amount'];
+const csvGenerateCollectionHeader = [
+  'AdmNo',
+  'Name',
+  'TransID',
+  'UTRNo.',
+  'Amount',
+  'Date',
+];
 
-export { grades, months, csvmonthsHeader,csvTodayCollectionHeader,csvGeneratedDuesHeader,csvGenerateCollectionHeader };
-
-
+export {
+  grades,
+  avlgender,
+  months,
+  csvmonthsHeader,
+  csvTodayCollectionHeader,
+  csvGeneratedDuesHeader,
+  csvGenerateCollectionHeader,
+};

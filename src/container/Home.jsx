@@ -2,17 +2,17 @@ import React from 'react';
 import TopBar from '../components/TopBar';
 import SideBar from '../components/SideBar';
 import { Route, Routes } from 'react-router-dom';
-import FeeCollection from '../components/FeeCollection';
 import TodaysCollection from '../components/TodaysCollection';
 import GenerateDues from '../components/GenerateDues';
 import GenerateCollection from '../components/GenerateCollection';
 import StudentDetails from '../components/StudentDetails';
 import AddStudent from '../components/AddStudent';
-import GenerateStudentList from '../components/GenerateStudentList';
 import FeeStructure from '../components/FeeStructure';
 import UpdateFee from '../components/UpdateFee';
 import GeneratedDues from '../components/GeneratedDues';
 import GeneratedCollection from '../components/GeneratedCollection';
+import FeeCollection from '../components/FeeCollection';
+import BulkAddStudent from '../components/BulkAddStudent';
 
 const Home = () => {
   return (
@@ -41,16 +41,22 @@ const Home = () => {
           ></Route>
           <Route path="/addstudent" element={<AddStudent></AddStudent>}></Route>
           <Route
-            path="/generatestudentlist"
-            element={<GenerateStudentList></GenerateStudentList>}
+            path="/addBulkStudent"
+            element={<BulkAddStudent></BulkAddStudent>}
           ></Route>
           <Route path="/updateFee" element={<UpdateFee></UpdateFee>}></Route>
           <Route
             path="/feestructure"
             element={<FeeStructure></FeeStructure>}
           ></Route>
-          <Route path='/generatedDues' element={<GeneratedDues></GeneratedDues>}></Route>
-          <Route path='/generatedCollection' element={<GeneratedCollection></GeneratedCollection>}></Route>
+          <Route
+            path="/generatedDues"
+            element={<GeneratedDues></GeneratedDues>}
+          ></Route>
+          <Route
+            path="/generatedCollection"
+            element={<GeneratedCollection></GeneratedCollection>}
+          ></Route>
         </Routes>
       </div>
     </div>

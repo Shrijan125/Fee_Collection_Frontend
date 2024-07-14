@@ -27,8 +27,8 @@ const SideBar = () => {
           routePath={'/addstudent'}
         ></SideBarMenu>
         <SideBarMenu
-          label={'Generate Student List'}
-          routePath={'/generatestudentlist'}
+          label={'Bulk Student Upload'}
+          routePath={'/addBulkStudent'}
         ></SideBarMenu>
         <SideBarMenu
           label={'Fee Structure'}
@@ -36,7 +36,7 @@ const SideBar = () => {
         ></SideBarMenu>
         <div className="absolute flex items-center justify-center w-full h-20 border-red-600 border-y-2 bottom-14 hover:cursor-pointer text-light hover:bg-red-300">
           <img
-            src="src/assets/log-out.png"
+            src="/assets/log-out.png"
             alt="logout-img"
             className="mr-4 w-14 h-14"
           ></img>
