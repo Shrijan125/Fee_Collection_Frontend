@@ -22,12 +22,16 @@ const Login = () => {
     }
     const url = BASE_URL + '/admin/login';
     try {
-      const { data } = await axios.post(url, { adminId, password });
+      const { data } = await axios.post(
+        url,
+        { adminId, password },
+        { withCredentials: true }
+      );
       localStorage.setItem('user', data);
       navigate('/', { replace: true });
       setLoading(false);
     } catch (error) {
-      const statusCode = error.response.status;
+      const statusCode = error?.response?.status;
       if (statusCode === 409) {
         toast.error('Admin does not exist.', { position: 'top-right' });
       } else if (statusCode === 401) {

@@ -42,21 +42,25 @@ const UpdateFee = () => {
     }
     try {
       const url = BASE_URL + '/admin/updateFee';
-      await axios.put(url, {
-        grade: selectedGrade?.value,
-        ProsReg,
-        AdmFee,
-        AnnualCharge,
-        TuitionFee,
-        LabCharge,
-        TotalFee,
-        StationaryFee,
-        ExamFee,
-      });
+      await axios.put(
+        url,
+        {
+          grade: selectedGrade?.value,
+          ProsReg,
+          AdmFee,
+          AnnualCharge,
+          TuitionFee,
+          LabCharge,
+          TotalFee,
+          StationaryFee,
+          ExamFee,
+        },
+        { withCredentials: true }
+      );
       toast.success('Updated Successfully', { position: 'top-right' });
 
       timeoutRef.current = setTimeout(() => {
-        // navigate(-1);
+        navigate(-1);
       }, 1000);
     } catch (error) {
       console.log(error);

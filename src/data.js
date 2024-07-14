@@ -23,10 +23,8 @@ const avlgender = [
 ];
 
 const months = [
-  
   { value: '3', label: 'APR' },
-  { value: '4', label: 'MAY' },
-  { value: '5', label: 'JUN' },
+  { value: '4', label: 'MAY & JUN' },
   { value: '6', label: 'JUL' },
   { value: '7', label: 'AUG' },
   { value: '8', label: 'SEP' },
@@ -34,8 +32,7 @@ const months = [
   { value: '10', label: 'NOV' },
   { value: '11', label: 'DEC' },
   { value: '0', label: 'JAN' },
-  { value: '1', label: 'FEB' },
-  { value: '2', label: 'MAR' },
+  { value: '1', label: 'FEB & MAR' },
 ];
 
 const csvmonthsHeader = [

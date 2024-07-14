@@ -35,7 +35,7 @@ const GenerateDues = () => {
       const url =
         BASE_URL +
         `/admin/generateDues?startDate=${startMonth.value}&endDate=${endMonth.value}&grade=${!grade?.value ? '' : grade.value}`;
-      const { data } = await axios.get(url);
+      const { data } = await axios.get(url, { withCredentials: true });
       setLoading(false);
       navigate('/generatedDues', { state: { data: data?.data } });
     } catch (error) {

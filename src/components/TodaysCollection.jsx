@@ -18,7 +18,7 @@ const TodaysCollection = () => {
     const url = BASE_URL + '/admin/gettodayscollection';
 
     axios
-      .get(url)
+      .get(url, { withCredentials: true })
       .then(response => {
         const rep = response.data.data;
         const x = rep.map(element => [

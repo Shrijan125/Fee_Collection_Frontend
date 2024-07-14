@@ -22,7 +22,7 @@ const FeeStructure = () => {
     const url = BASE_URL + '/admin/getFeeStructure';
     setLoading(true);
     axios
-      .get(url)
+      .get(url, { withCredentials: true })
       .then(response => {
         const rep = response.data.data;
         setData([...data, ...rep]);

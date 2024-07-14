@@ -14,7 +14,9 @@ const BulkAddStudent = () => {
     }
     const url = BASE_URL + '/admin/addBulkStudent';
     try {
-      const { data } = await axios.post(url, fileData?.current);
+      const { data } = await axios.post(url, fileData?.current, {
+        withCredentials: true,
+      });
       toast.success('Update Successfull!', { position: 'top-right' });
     } catch (error) {
       toast.error('Failed to upload data!', { position: 'top-right' });

@@ -27,7 +27,7 @@ const GenerateCollection = () => {
       const url =
         BASE_URL +
         `/admin/generateCollection?startDate=${startDate.toISOString()}&endDate=${endDate.toISOString()}`;
-      const { data } = await axios.get(url);
+      const { data } = await axios.get(url, { withCredentials: true });
       const rep = data.data;
       const x = rep.map(element => {
         const createdAt = moment(element?.createdAt).format('DD/MM/YYYY');

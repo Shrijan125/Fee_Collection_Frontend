@@ -41,15 +41,19 @@ const StudentDetails = () => {
     }
     const url = BASE_URL + '/admin/updateStudent';
     try {
-      await axios.put(url, {
-        admno,
-        firstName,
-        ...(lastName.length > 0 && { lastName }),
-        grade: grade.value,
-        ...(middleName.length > 0 && { middleName }),
-        phone,
-        ...(altPhone.length > 0 && { alternatePhone: altPhone }),
-      });
+      await axios.put(
+        url,
+        {
+          admno,
+          firstName,
+          ...(lastName.length > 0 && { lastName }),
+          grade: grade.value,
+          ...(middleName.length > 0 && { middleName }),
+          phone,
+          ...(altPhone.length > 0 && { alternatePhone: altPhone }),
+        },
+        { withCredentials: true }
+      );
       toast.success('Student Updated Successfully!', { position: 'top-right' });
     } catch (error) {
       const statusCode = error?.response?.status;
@@ -73,7 +77,7 @@ const StudentDetails = () => {
     }
     const url = BASE_URL + '/admin/inactivateStudent';
     try {
-      await axios.post(url, { admno });
+      await axios.post(url, { admno }, { withCredentials: true });
       toast.success('Student deleted Successfully', { position: 'top-right' });
     } catch (error) {
       const statusCode = error?.response?.status;
@@ -106,7 +110,7 @@ const StudentDetails = () => {
     }
     const url = BASE_URL + `/admin/getallstudent?admno=${admno}`;
     axios
-      .get(url)
+      .get(url, { withCredentials: true })
       .then(data => {
         const result = data?.data?.data;
         setPresent(result?.present);

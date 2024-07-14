@@ -35,13 +35,11 @@ const FeeCollection = () => {
     receiptNo: '',
   });
 
-  
-
   const [annFee, setAnnFee] = useState(false);
-  const [exm1, setexm1] = useState( false);
-  const [exm2, setexm2] = useState( false);
-  const [stat1, setstat1] = useState( false);
-  const [stat2, setstat2] = useState( false);
+  const [exm1, setexm1] = useState(false);
+  const [exm2, setexm2] = useState(false);
+  const [stat1, setstat1] = useState(false);
+  const [stat2, setstat2] = useState(false);
   const [amount, setAmount] = useState('');
   const [fine, setFine] = useState('');
   const [txnno, settxnno] = useState('');
@@ -154,16 +152,13 @@ const FeeCollection = () => {
       return;
     }
     var monthsUrl = '';
-    console.log(formData?.feeForMonth);
     formData?.feeForMonth.forEach(element => {
-      console.log(element.value);
       monthsUrl = monthsUrl.concat(`&months=${element.value}`);
     });
     const url =
       BASE_URL + `/admin/calculateFee?tutfee=${formData?.tutFee}${monthsUrl}`;
-      console.log(url);
     axios
-      .get(url)
+      .get(url, { withCredentials: true })
       .then(data => {
         setAmount(data?.data?.data?.totalFee);
         setFine(data?.data?.data?.fine);
@@ -216,7 +211,13 @@ const FeeCollection = () => {
     }
     setLoading(true);
     const url = BASE_URL + '/admin/collectFee';
-    const month = formData?.feeForMonth?.map(element => element?.value);
+    var month = formData?.feeForMonth?.map(element => element?.value);
+    month = month.map(element => {
+      element = parseInt(element);
+      if (element === 3 || element === 4) return (element - 3).toString();
+      else if (element >= 6 && element <= 11) return (element - 4).toString();
+      else return (element + 8).toString();
+    });
     const data = {
       admno: formData?.admno,
       month,
@@ -235,7 +236,7 @@ const FeeCollection = () => {
       bankName: bankName,
     };
     try {
-      await axios.post(url, data);
+      await axios.post(url, data, { withCredentials: true });
       setPrint(false);
       setLoading(false);
       toast.success('Transaction Complete!', { position: 'top-right' });
@@ -261,7 +262,7 @@ const FeeCollection = () => {
     }
     const url = BASE_URL + `/admin/getFeeDetails?admno=${formData?.admno}`;
     try {
-      const { data } = await axios.get(url);
+      const { data } = await axios.get(url, { withCredentials: true });
       const FeeDetails = data.data;
       const feeObj = {
         admno: FeeDetails?.findFeeDetails?.student?.admno,
@@ -284,16 +285,27 @@ const FeeCollection = () => {
         discount: FeeDetails?.findFeeDetails?.discount,
         receiptNo: FeeDetails?.receiptNumber?.count,
       };
-      for (let i = 0; i < 12; i++) {
-        if (FeeDetails?.findFeeDetails?.MonthlyDues[i] === true)
-          dues.current.push({ label: months[i].label, value: i });
+
+      for (let i = 0; i <= 9; i++) {
+        if (FeeDetails?.findFeeDetails?.MonthlyDues[i] === true) {
+          let indextoFind;
+          if (i === 0 || i === 1) indextoFind = i + 3;
+          else if (i >= 2 && i <= 7) indextoFind = i + 4;
+          else indextoFind = i - 8;
+          const foundMonth = months.find(
+            month => month.value === indextoFind.toString()
+          );
+          if (foundMonth) {
+            dues.current.push(foundMonth);
+          }
+        }
       }
       setFormData(prevState => ({
         ...prevState,
         ...feeObj,
       }));
     } catch (error) {
-      const status = error.response.status;
+      const status = error?.response?.status;
       resetFormData();
       if (status == 404)
         toast.error('Student Not Found', { position: 'top-right' });

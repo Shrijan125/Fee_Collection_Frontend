@@ -84,7 +84,7 @@ const AddStudent = () => {
       ...(altPhone && { alternatePhone: altPhone }),
     };
     try {
-      await axios.post(url, data);
+      await axios.post(url, data, { withCredentials: true });
 
       toast.success('Student Added Successfully!', { position: 'top-right' });
       setLoading(false);
