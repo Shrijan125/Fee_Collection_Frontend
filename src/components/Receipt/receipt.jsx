@@ -13,6 +13,17 @@ const Receipt = ({
   totalAmount,
   latefine,
   discount,
+  labcharge,
+  annualFee,
+  annualFeeP,
+  statFee1,
+  examFee1,
+  examFee1P,
+  statFee2,
+  statFee2P,
+  examFee2,
+  examFee2P,
+  statFee1P
 }) => {
   return (
     <div className="hidden print:gap-2 print:h-screen print:grid-cols-2 print:w-screen print:grid">
@@ -66,6 +77,43 @@ const Receipt = ({
           <span>Tuition Fee:</span>
           <div>{tutFee === '' ? `\u20B90` : `\u20B9${tutFee}`}</div>
         </div>
+        {labcharge !== '0' && (
+          <div className="flex items-center justify-between mx-2">
+            <span>Lab Charge:</span>
+            <div>{`\u20B9${labcharge}`}</div>
+          </div>
+        )}
+       
+         {annualFeeP && (
+          <div className="flex items-center justify-between mx-2">
+            <span>Annual Fee:</span>
+            <div>{`\u20B9${annualFee}`}</div>
+          </div>
+        )}
+         {statFee1P  && (
+          <div className="flex items-center justify-between mx-2">
+            <span>Stat. Fee(Apr):</span>
+            <div>{`\u20B9${statFee1}`}</div>
+          </div>
+        )}
+        {examFee1P && (
+          <div className="flex items-center justify-between mx-2">
+            <span>Exm Fee(Aug):</span>
+            <div>{`\u20B9${examFee1}`}</div>
+          </div>
+        )}
+        {statFee2P && (
+          <div className="flex items-center justify-between mx-2">
+            <span>Stat. Fee(Oct)</span>
+            <div>{`\u20B9${statFee2}`}</div>
+          </div>
+        )}
+        {examFee2P && (
+          <div className="flex items-center justify-between mx-2">
+            <span>Exm Fee(Dec)</span>
+            <div>{`\u20B9${examFee2}`}</div>
+          </div>
+        )}
         {dues !== '' && (
           <div className="flex items-center justify-between mx-2">
             <span>Dues:</span>
@@ -93,7 +141,7 @@ const Receipt = ({
         </div>
       </div>
       <div className="flex flex-col w-full border h-1/2">
-        <div className="mx-2">Parent's Copy</div>
+        <div className="mx-2">Office Copy</div>
         <div className="mx-2 mt-5 text-xl font-bold text-center ">
           Akshar Vidya Griha
         </div>
@@ -142,6 +190,43 @@ const Receipt = ({
           <span>Tuition Fee:</span>
           <div>{tutFee === '' ? `\u20B90` : `\u20B9${tutFee}`}</div>
         </div>
+        {labcharge !== '0' && (
+          <div className="flex items-center justify-between mx-2">
+            <span>Lab Charge:</span>
+            <div>{`\u20B9${labcharge}`}</div>
+          </div>
+        )}
+       
+         {annualFeeP && (
+          <div className="flex items-center justify-between mx-2">
+            <span>Annual Fee:</span>
+            <div>{`\u20B9${annualFee}`}</div>
+          </div>
+        )}
+         {statFee1P  && (
+          <div className="flex items-center justify-between mx-2">
+            <span>Stat. Fee(Apr):</span>
+            <div>{`\u20B9${statFee1}`}</div>
+          </div>
+        )}
+        {examFee1P && (
+          <div className="flex items-center justify-between mx-2">
+            <span>Exm Fee(Aug):</span>
+            <div>{`\u20B9${examFee1}`}</div>
+          </div>
+        )}
+        {statFee2P && (
+          <div className="flex items-center justify-between mx-2">
+            <span>Stat. Fee(Oct)</span>
+            <div>{`\u20B9${statFee2}`}</div>
+          </div>
+        )}
+        {examFee2P && (
+          <div className="flex items-center justify-between mx-2">
+            <span>Exm Fee(Dec)</span>
+            <div>{`\u20B9${examFee2}`}</div>
+          </div>
+        )}
         {dues !== '' && (
           <div className="flex items-center justify-between mx-2">
             <span>Dues:</span>

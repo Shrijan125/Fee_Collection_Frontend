@@ -148,7 +148,6 @@ const UpdateFee = () => {
         ></FormBox>
       </div>
       <Button text={'Update'} onClick={onClickHandler}></Button>
-      <Toaster />
     </div>
   );
 };

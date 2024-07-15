@@ -1,17 +1,11 @@
 import React from 'react';
 import SideBarMenu from './SideBarMenu';
-import axios from 'axios';
-import { BASE_URL } from '../api/adminRequests';
-import toast, { Toaster } from 'react-hot-toast';
+import { useAuth } from '../contexts/AuthContext';
 
 const SideBar = () => {
+  const auth = useAuth();
   async function handleClick() {
-    const url = `${BASE_URL}/admin/logout`;
-    try {
-      await axios.post(url, {}, { withCredentials: true });
-    } catch (error) {
-      toast.error('Logout Failed!', { position: 'top-right' });
-    }
+    await auth.logout();
   }
   return (
     <div>
@@ -57,7 +51,6 @@ const SideBar = () => {
           <h1 className="text-3xl font-semibold text-red-600">Logout</h1>
         </div>
       </div>
-      <Toaster />
     </div>
   );
 };

@@ -9,7 +9,6 @@ import { useNavigate } from 'react-router-dom';
 
 const GenerateDues = () => {
   const date = new Date();
-  const index = date.getMonth();
   const [startMonth, setStartMonth] = useState({});
   const [endMonth, setEndMonth] = useState({});
   const [grade, setGrade] = useState({});
@@ -23,7 +22,22 @@ const GenerateDues = () => {
       });
       return;
     }
-    if (endMonth.value < startMonth.value) {
+    var start, end;
+    const startComp=parseInt(startMonth.value);
+    const endComp=parseInt(endMonth.value);
+
+    if (startComp ===3 || startComp === 4) start = (startComp - 3).toString();
+    else if (startComp >= 6 && startComp <= 11)
+      start = (startComp - 4).toString();
+    else start = (startComp + 8).toString();
+
+    if (endComp === 3 || endComp === 4) end = (endComp - 3).toString();
+    else if (endComp >= 6 && endComp <= 11)
+      end = (endComp - 4).toString();
+    else end = (endComp + 8).toString();
+
+
+    if (end < start) {
       toast.error('Start Month is greater than end month', {
         position: 'top-right',
       });
@@ -34,7 +48,7 @@ const GenerateDues = () => {
       setLoading(true);
       const url =
         BASE_URL +
-        `/admin/generateDues?startDate=${startMonth.value}&endDate=${endMonth.value}&grade=${!grade?.value ? '' : grade.value}`;
+        `/admin/generateDues?startDate=${start}&endDate=${end}&grade=${!grade?.value ? '' : grade.value}`;
       const { data } = await axios.get(url, { withCredentials: true });
       setLoading(false);
       navigate('/generatedDues', { state: { data: data?.data } });
@@ -63,7 +77,7 @@ const GenerateDues = () => {
           placeholder={'Select Month'}
           defaultValue={startMonth}
           onChange={setStartMonth}
-          options={months.slice(0, index)}
+          options={months}
           value={startMonth}
         ></Select>
       </div>
@@ -83,7 +97,7 @@ const GenerateDues = () => {
           placeholder={'Select Month'}
           defaultValue={endMonth}
           onChange={setEndMonth}
-          options={months.slice(0, index)}
+          options={months}
           value={endMonth}
         ></Select>
       </div>
@@ -108,7 +122,6 @@ const GenerateDues = () => {
         ></Select>
       </div>
       <Button text={'Generate'} onClick={onCLick}></Button>
-      <Toaster />
     </div>
   );
 };

@@ -33,6 +33,7 @@ const FeeCollection = () => {
     prevDues: '',
     discount: '',
     receiptNo: '',
+    labCharge: '',
   });
 
   const [annFee, setAnnFee] = useState(false);
@@ -69,6 +70,7 @@ const FeeCollection = () => {
       prevDues: '',
       discount: '',
       receiptNo: '',
+      labCharge:''
     });
     setAnnFee(false);
     setexm1(false);
@@ -155,8 +157,9 @@ const FeeCollection = () => {
     formData?.feeForMonth.forEach(element => {
       monthsUrl = monthsUrl.concat(`&months=${element.value}`);
     });
+    const fee=(parseInt(formData?.labCharge || 0)+parseInt(formData?.tutFee || 0)).toString();
     const url =
-      BASE_URL + `/admin/calculateFee?tutfee=${formData?.tutFee}${monthsUrl}`;
+      BASE_URL + `/admin/calculateFee?tutfee=${fee}${monthsUrl}`;
     axios
       .get(url, { withCredentials: true })
       .then(data => {
@@ -284,6 +287,7 @@ const FeeCollection = () => {
         prevDues: FeeDetails?.findFeeDetails?.dues,
         discount: FeeDetails?.findFeeDetails?.discount,
         receiptNo: FeeDetails?.receiptNumber?.count,
+        labCharge:FeeDetails?.getFees?.LabCharge
       };
 
       for (let i = 0; i <= 9; i++) {
@@ -342,9 +346,9 @@ const FeeCollection = () => {
           setField={value => handleChange('section', value)}
         />
         <FormBox
-          label={'Tuition Fee'}
+          label={'Tuition & Lab Fee'}
           disabled
-          value={formData.tutFee}
+          value={(parseInt(formData?.labCharge || 0)+parseInt(formData?.tutFee || 0)).toString()}
           setField={value => handleChange('tutFee', value)}
         />
         <FormBox
@@ -455,7 +459,7 @@ const FeeCollection = () => {
         <FormBox label={'Late Fine'} disabled value={fine} setField={setFine} />
         <FormBox label={'Total Amount'} value={amount} setField={setAmount} />
         <FormBox
-          label={'UTR/TXN./Chq. No.'}
+          label={'Utr/Txn./Chq. No.'}
           value={txnno}
           setField={settxnno}
         />
@@ -531,7 +535,6 @@ const FeeCollection = () => {
           )
         ) : null}
       </div>
-      <Toaster />
       <Receipt
         admno={formData?.admno}
         dues={formData?.prevDues}
@@ -544,6 +547,17 @@ const FeeCollection = () => {
         months={formData?.feeForMonth}
         latefine={fine}
         discount={formData?.discount}
+        labcharge={formData?.labCharge}
+        statFee1={formData?.stat1}
+        statFee1P={formData?.stat1P?false:stat1}
+        statFee2={formData?.stat2}
+        statFee2P={formData?.stat2P?false:stat2}
+        examFee1={formData?.exam1}
+        examFee1P={formData?.exam1P?false:exm1}
+        examFee2={formData?.exam2}
+        examFee2P={formData?.exam2P?false:exm2}
+        annualFee={formData?.annDevCharge}
+        annualFeeP={formData?.annDevChargeP?false:annFee}
       ></Receipt>
     </div>
   );

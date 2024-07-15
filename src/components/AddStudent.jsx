@@ -318,7 +318,6 @@ const AddStudent = () => {
       ) : (
         <Button text={'Submit'} onClick={onClickHandler}></Button>
       )}
-      <Toaster />
     </div>
   );
 };

@@ -54,18 +54,19 @@ const csvmonthsHeader = [
 const csvTodayCollectionHeader = [
   'AdmNo',
   'Name',
-  'TransID',
-  'UTRNo.',
+  'Bank',
+  'Utr/Txn/Chq/No.',
   'Amount',
 ];
 const csvGeneratedDuesHeader = ['AdmNo', 'Name', 'Grade', 'Phone', 'Amount'];
 const csvGenerateCollectionHeader = [
   'AdmNo',
   'Name',
-  'TransID',
+  'Bank',
   'UTRNo.',
-  'Amount',
   'Date',
+  'Utr/Txn./Chq. No.',
+  'Amount',
 ];
 
 export {

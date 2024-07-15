@@ -28,16 +28,16 @@ const GenerateCollection = () => {
         BASE_URL +
         `/admin/generateCollection?startDate=${startDate.toISOString()}&endDate=${endDate.toISOString()}`;
       const { data } = await axios.get(url, { withCredentials: true });
-      const rep = data.data;
+      const rep = data?.data;
       const x = rep.map(element => {
         const createdAt = moment(element?.createdAt).format('DD/MM/YYYY');
         return [
           element?.student?.admno,
-          element?.student?.firstName,
-          element?._id,
+          element?.student?.Name,
+          element?.student?.bankName,
           element?.utrNo ? element?.utrNo : '',
-          element?.amount,
           createdAt,
+          element?.amount,
         ];
       });
 
@@ -86,7 +86,6 @@ const GenerateCollection = () => {
       </div>
 
       <Button text={'Generate'} onClick={onClick}></Button>
-      <Toaster />
     </div>
   );
 };

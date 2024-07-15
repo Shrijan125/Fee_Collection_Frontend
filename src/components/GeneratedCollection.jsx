@@ -32,24 +32,33 @@ const GeneratedCollection = () => {
               </th>
 
               <th className="text-3xl border text-light print:text-black print:text-xl print:border-black">
-                TransID
+                Bank
               </th>
 
               <th className="text-3xl border text-light print:text-black print:text-xl print:border-black">
-                UTRNo.
-              </th>
-              <th className="text-3xl border text-light print:text-black print:text-xl print:border-black">
-                Amount
+                Utr/Txn./Chq. No.
               </th>
               <th className="text-3xl border text-light print:text-black print:text-xl print:border-black">
                 Date
+              </th>
+              <th className="text-3xl border text-light print:text-black print:text-xl print:border-black">
+                Amount
               </th>
             </tr>
           </thead>
           <tbody>
             {data.map(element => {
               return (
-                <tr key={element[2]}>
+                <tr
+                  key={
+                    element[0] +
+                    element[1] +
+                    element[2] +
+                    element[3] +
+                    element[4] +
+                    element[5]
+                  }
+                >
                   {element.map((item, index) => {
                     return (
                       <td

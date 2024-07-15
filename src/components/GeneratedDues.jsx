@@ -31,35 +31,31 @@ const GeneratedDues = () => {
               <th className="text-3xl border text-light print:text-black print:text-xl print:border-black">
                 Grade
               </th>
-
               <th className="text-3xl border text-light print:text-black print:text-xl print:border-black">
                 Phone
               </th>
               <th className="text-3xl border text-light print:text-black print:text-xl print:border-black">
-                Amount
+                Due Amount:
               </th>
             </tr>
           </thead>
           <tbody>
             {data.map(element => {
               csvData.push([
-                element.admno,
-                `${element.firstName} ${element.middleName ?? ''} ${element.lastName ?? ''}`.trim(),
+                element?.admno,
+                element?.Name,
                 element?.grade,
                 element?.phone,
                 element?.dues,
               ]);
+              if(element?.dues!==0)
               return (
                 <tr key={element?.id}>
                   <td className="text-xl text-center transition-all duration-300 'hover:cursor-pointer hover:ease-in-out hover:bg-light hover:border-appBar ' delay-150 border hover:text-appBar text-light print:text-black print:text-xl print:border-black">
                     {element?.admno}
                   </td>
                   <td className="text-xl text-center transition-all duration-300 'hover:cursor-pointer hover:ease-in-out hover:bg-light hover:border-appBar ' delay-150 border hover:text-appBar text-light print:text-black print:text-xl print:border-black">
-                    {element?.firstName +
-                      ' ' +
-                      (element?.middleName ?? '') +
-                      ' ' +
-                      (element?.lastName ?? '')}
+                    {element?.Name}
                   </td>
                   <td className="text-xl text-center transition-all duration-300 'hover:cursor-pointer hover:ease-in-out hover:bg-light hover:border-appBar ' delay-150 border hover:text-appBar text-light print:text-black print:text-xl print:border-black">
                     {element?.grade}

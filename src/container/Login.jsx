@@ -1,13 +1,12 @@
 import React, { useState } from 'react';
 import FormBox from '../components/FormBox';
 import Button from '../components/Button';
-import axios from 'axios';
-import { BASE_URL } from '../api/adminRequests';
+import { useAuth } from '../contexts/AuthContext';
 import { useNavigate } from 'react-router-dom';
-import toast, { Toaster } from 'react-hot-toast';
 import { ClipLoader } from 'react-spinners';
 
 const Login = () => {
+  const auth = useAuth();
   const [loading, setLoading] = useState(false);
   const [adminId, setAdminId] = useState('');
   const [password, setPassword] = useState('');
@@ -15,33 +14,11 @@ const Login = () => {
 
   async function submitHandler() {
     setLoading(true);
-    if (!adminId || !password || adminId == '' || password == '') {
-      toast.error('Both Fields are requried', { position: 'top-right' });
-      setLoading(false);
-      return;
-    }
-    const url = BASE_URL + '/admin/login';
-    try {
-      const { data } = await axios.post(
-        url,
-        { adminId, password },
-        { withCredentials: true }
-      );
-      localStorage.setItem('user', data);
-      navigate('/', { replace: true });
-      setLoading(false);
-    } catch (error) {
-      const statusCode = error?.response?.status;
-      if (statusCode === 409) {
-        toast.error('Admin does not exist.', { position: 'top-right' });
-      } else if (statusCode === 401) {
-        toast.error('Invalid Password', { position: 'top-right' });
-      } else if (statusCode === 404) {
-        toast.error('All fields are required', { position: 'top-right' });
-      } else {
-        toast.error('Something went wrong', { position: 'top-right' });
-      }
-    }
+    await auth.login({
+      adminId,
+      password,
+      callback: () => navigate('/', { replace: true }),
+    });
     setLoading(false);
   }
 
@@ -76,7 +53,6 @@ const Login = () => {
           <Button text={'Login'} onClick={submitHandler}></Button>
         )}
       </div>
-      <Toaster />
     </div>
   );
 };

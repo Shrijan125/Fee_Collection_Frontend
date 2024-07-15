@@ -127,7 +127,6 @@ const FeeStructure = () => {
             <span className="text-3xl text-appBar">Note:</span> Stationary Fee
             and Exam Fee are not part of total fee.
           </p>
-          <Toaster />
         </div>
       )}
     </div>

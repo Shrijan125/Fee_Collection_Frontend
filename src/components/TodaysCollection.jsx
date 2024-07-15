@@ -23,8 +23,8 @@ const TodaysCollection = () => {
         const rep = response.data.data;
         const x = rep.map(element => [
           element?.student?.admno,
-          element?.student?.firstName,
-          element?._id,
+          element?.student?.Name,
+          element?.student?.bankName,
           element?.utrNo ? element?.utrNo : '',
           element?.amount,
         ]);
@@ -58,11 +58,11 @@ const TodaysCollection = () => {
                 </th>
 
                 <th className="text-3xl border text-light print:text-black print:text-xl print:border-black">
-                  TransID
+                  Bank
                 </th>
 
                 <th className="text-3xl border text-light print:text-black print:text-xl print:border-black">
-                  UTRNo.
+                  Utr/Txn./Chq. No.
                 </th>
                 <th className="text-3xl border text-light print:text-black print:text-xl print:border-black">
                   Amount
@@ -72,7 +72,15 @@ const TodaysCollection = () => {
             <tbody>
               {data.map(element => {
                 return (
-                  <tr key={element[2]}>
+                  <tr
+                    key={
+                      element[0] +
+                      element[1] +
+                      element[2] +
+                      element[3] +
+                      element[4]
+                    }
+                  >
                     {element.map((item, index) => {
                       return (
                         <td
@@ -100,7 +108,6 @@ const TodaysCollection = () => {
           </div>
         </div>
       )}
-      <Toaster />
     </div>
   );
 };

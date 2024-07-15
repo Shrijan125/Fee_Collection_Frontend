@@ -213,7 +213,6 @@ const StudentDetails = () => {
           </button>
         )}
       </div>
-      <Toaster />
     </div>
   );
 };

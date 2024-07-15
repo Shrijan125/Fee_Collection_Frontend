@@ -61,7 +61,6 @@ const BulkAddStudent = () => {
         <span className="text-3xl text-appBar">Note: </span>Please Check the
         sample file before uploading!
       </p>
-      <Toaster />
     </div>
   );
 };
