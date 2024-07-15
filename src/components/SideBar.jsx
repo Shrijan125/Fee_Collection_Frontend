@@ -23,10 +23,10 @@ const SideBar = () => {
           label={'Generate Collection'}
           routePath={'/generatecollection'}
         ></SideBarMenu>
-        <SideBarMenu
+        {/* <SideBarMenu
           label={'Student Details'}
           routePath={'/studentdetails'}
-        ></SideBarMenu>
+        ></SideBarMenu> */}
         <SideBarMenu
           label={'Add Student'}
           routePath={'/addstudent'}
