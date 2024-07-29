@@ -1,11 +1,11 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 
-const SideBarMenu = ({ label, routePath }) => {
+const SideBarMenu = ({ label, routePath, Icon }) => {
   const isActiveStyle =
-    'flex items-center justify-center w-full h-20 border-b-2 border-appBar text-light hover:cursor-pointer hover:bg-slate-200 bg-inactive';
+    'flex items-center justify-start  pl-8 w-full h-14 whitespace-nowrap  text-light hover:cursor-pointer hover:bg-slate-200 bg-inactive';
   const isNotActiveStyle =
-    'flex items-center justify-center w-full h-20 border-b-2 border-appBar text-light hover:cursor-pointer hover:bg-slate-200 bg-none';
+    'flex items-center justify-start w-full pl-8 h-14 whitespace-nowrap  text-light hover:cursor-pointer hover:bg-slate-200 bg-none';
   return (
     <NavLink
       to={routePath}
@@ -13,8 +13,9 @@ const SideBarMenu = ({ label, routePath }) => {
         isActive ? isActiveStyle : isNotActiveStyle
       }
     >
-      <div>
-        <h1 className="text-3xl font-semibold text-appBar">{label}</h1>
+      <div className="flex gap-3">
+        {Icon && <Icon className="text-appBar" />}
+        <h1 className="font-semibold text-appBar">{label}</h1>
       </div>
     </NavLink>
   );

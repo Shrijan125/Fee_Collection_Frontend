@@ -4,17 +4,16 @@ const CheckBox = ({ label, value, setField }) => {
   return (
     <div className="flex items-center justify-center mt-2">
       <label
-        className="text-2xl font-bold text-light"
-        rel="adminPassword"
-        htmlFor="hostelFacility"
+        className="font-semibold select-none sm:text-2xl sm:font-bold text-light whitespace-nowrap"
+        htmlFor={label}
       >
         {label}
       </label>
       <input
-        className="w-6 h-6 ml-3 bg-gray-100 border-gray-300 text-appBar rounded-8 focus:ring-appBar"
+        className="ml-3 bg-gray-100 border-gray-300 sm:w-6 sm:h-6 text-appBar focus:ring-appBar"
         type="checkbox"
-        id="hostelFacility"
-        name="hostelFacility"
+        id={label}
+        name={label}
         checked={value}
         onChange={() => setField(!value)}
       />

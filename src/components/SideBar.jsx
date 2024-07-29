@@ -1,56 +1,112 @@
-import React from 'react';
+import React, { useState } from 'react';
 import SideBarMenu from './SideBarMenu';
-import { useAuth } from '../contexts/AuthContext';
+import {
+  ArchiveRestore,
+  Banknote,
+  BookUser,
+  Coins,
+  FileClock,
+  Grid2X2,
+  HandCoins,
+  ReceiptIndianRupee,
+  Shirt,
+  UserRoundPen,
+} from 'lucide-react';
+import DropDown from './DropDown/DropDown';
 
-const SideBar = () => {
-  const auth = useAuth();
-  async function handleClick() {
-    await auth.logout();
-  }
+const SideBar = ({ visible }) => {
+  const [feevisible, setFeeVisible] = useState(false);
+  const [stuVisible, setStuVisible] = useState(false);
+  const [dressVisible, setdressVisible] = useState(false);
+  const handleFee = () => {
+    setFeeVisible(!feevisible);
+  };
+  const handleStudent = () => {
+    setStuVisible(!stuVisible);
+  };
+  const handleDress = () => {
+    setdressVisible(!dressVisible);
+  };
+  const Feeitems = [
+    <SideBarMenu
+      label={'Collect Fee'}
+      routePath={'/'}
+      Icon={ReceiptIndianRupee}
+    ></SideBarMenu>,
+    <SideBarMenu
+      label={'Generate Dues'}
+      routePath={'/generatedues'}
+      Icon={FileClock}
+    ></SideBarMenu>,
+    <SideBarMenu
+      label={"Today's Collection"}
+      routePath={'/todayscollection'}
+      Icon={Coins}
+    ></SideBarMenu>,
+    <SideBarMenu
+      label={'Generate Collection'}
+      routePath={'/generatecollection'}
+      Icon={Banknote}
+    ></SideBarMenu>,
+    <SideBarMenu
+      label={'Fee Structure'}
+      routePath={'/feestructure'}
+      Icon={Grid2X2}
+    ></SideBarMenu>,
+  ];
+
+  const StudentItems = [
+    <SideBarMenu
+      label={'Add Student'}
+      routePath={'/addstudent'}
+      Icon={UserRoundPen}
+    ></SideBarMenu>,
+    <SideBarMenu
+      label={'Bulk Student Upload'}
+      routePath={'/addBulkStudent'}
+      Icon={BookUser}
+    ></SideBarMenu>,
+  ];
+
+  const DressItems = [
+    <SideBarMenu
+    label={'Collect Payment'}
+    routePath={'/collectDressPayment'}
+    Icon={HandCoins}
+  ></SideBarMenu>,
+    <SideBarMenu
+      label={'Uniform Details'}
+      routePath={'/uniformDetails'}
+      Icon={Shirt}
+    ></SideBarMenu>,
+    <SideBarMenu
+      label={'Bulk Update'}
+      routePath={'/bulkUpdateDress'}
+      Icon={ArchiveRestore}
+    ></SideBarMenu>
+  ];
   return (
-    <div>
-      <div className="fixed flex flex-col h-full print:hidden w-96 bg-light top-14">
-        <SideBarMenu label={'Home'} routePath={'/'}></SideBarMenu>
-        <SideBarMenu
-          label={"Today's Collection"}
-          routePath={'/todayscollection'}
-        ></SideBarMenu>
-        <SideBarMenu
-          label={'Generate Dues'}
-          routePath={'/generatedues'}
-        ></SideBarMenu>
-        <SideBarMenu
-          label={'Generate Collection'}
-          routePath={'/generatecollection'}
-        ></SideBarMenu>
-        {/* <SideBarMenu
-          label={'Student Details'}
-          routePath={'/studentdetails'}
-        ></SideBarMenu> */}
-        <SideBarMenu
-          label={'Add Student'}
-          routePath={'/addstudent'}
-        ></SideBarMenu>
-        <SideBarMenu
-          label={'Bulk Student Upload'}
-          routePath={'/addBulkStudent'}
-        ></SideBarMenu>
-        <SideBarMenu
-          label={'Fee Structure'}
-          routePath={'/feestructure'}
-        ></SideBarMenu>
-        <div
-          className="absolute flex items-center justify-center w-full h-20 border-red-600 border-y-2 bottom-14 hover:cursor-pointer text-light hover:bg-red-300"
-          onClick={handleClick}
-        >
-          <img
-            src="/assets/log-out.png"
-            alt="logout-img"
-            className="mr-4 w-14 h-14"
-          ></img>
-          <h1 className="text-3xl font-semibold text-red-600">Logout</h1>
-        </div>
-      </div>
+    <div
+      className={`fixed flex flex-col w-64 h-full overflow-y-auto ${visible ? 'translate-x-0' : '-translate-x-full'} xl:translate-x-0 print:hidden bg-light top-14 z-50`}
+    >
+      <DropDown
+        visible={feevisible}
+        item={Feeitems}
+        handleClick={handleFee}
+        name={'Account'}
+      ></DropDown>
+      <DropDown
+        visible={stuVisible}
+        item={StudentItems}
+        handleClick={handleStudent}
+        name={'Student'}
+      ></DropDown>
+      <DropDown
+        visible={dressVisible}
+        item={DressItems}
+        handleClick={handleDress}
+        name={'Uniform'}
+      ></DropDown>
     </div>
   );
 };

@@ -39,32 +39,35 @@ const TodaysCollection = () => {
   const currentDate = moment().format('LL');
   const [loading, setLoading] = useState(false);
   return (
-    <div className="w-full h-full ml-96 bg-dark print:mx-0 print:bg-none print:flex print:flex-col">
+    <div className="w-full h-full xl:ml-64 print:mx-0 print:bg-none print:flex print:flex-col">
+      <div className="flex items-center justify-center w-full h-screen text-xl text-white sm:hidden">
+        Need a Larger Screen to Display!
+      </div>
       <h1 className="hidden print:inline print:text-black print:font-semibold print:text-xl print:text-center">
         Akshar Vidya Griha <span>- Date:{currentDate}</span>
       </h1>
       {loading ? (
         <LoadingComponent></LoadingComponent>
       ) : (
-        <div className="mx-6 mt-16 print:mx-0 print:mt-2">
+        <div className="hidden mx-6 mt-16 print:mx-0 print:mt-2 sm:block">
           <table className="w-full border-2 table-auto border-light print:border-black">
             <thead>
               <tr className="bg-appBar print:bg-none ">
-                <th className="text-3xl border text-light print:text-black print:text-xl print:border-black ">
+                <th className="border lg:text-2xl text-light print:text-black print:text-xl print:border-black ">
                   AdmNo.
                 </th>
-                <th className="text-3xl border text-light print:text-black print:text-xl print:border-black">
+                <th className="border lg:text-2xl text-light print:text-black print:text-xl print:border-black">
                   Name
                 </th>
 
-                <th className="text-3xl border text-light print:text-black print:text-xl print:border-black">
+                <th className="border lg:text-2xl text-light print:text-black print:text-xl print:border-black">
                   Bank
                 </th>
 
-                <th className="text-3xl border text-light print:text-black print:text-xl print:border-black">
+                <th className="border lg:text-2xl text-light print:text-black print:text-xl print:border-black">
                   Utr/Txn./Chq. No.
                 </th>
-                <th className="text-3xl border text-light print:text-black print:text-xl print:border-black">
+                <th className="border lg:text-2xl text-light print:text-black print:text-xl print:border-black">
                   Amount
                 </th>
               </tr>

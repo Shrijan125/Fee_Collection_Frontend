@@ -17,6 +17,33 @@ const grades = [
   { value: 'XII', label: 'XII' },
 ];
 
+const dressDetails = [
+  { value: 'FS20NB', label: 'Full Seater (20) NB' },
+  { value: 'FS20B', label: 'Full Seater (20) BIS' },
+  { value: 'FS22NB', label: 'Full Seater (22) NB' },
+  { value: 'FS22B', label: 'Full Seater (22) BIS' },
+  { value: 'FS24NB', label: 'Full Seater (24) NB' },
+  { value: 'FS24B', label: 'Full Seater (24) BIS' },
+  { value: 'FS26NB', label: 'Full Seater (26) NB' },
+  { value: 'FS26B', label: 'Full Seater (26) BIS' },
+  { value: 'FS28NB', label: 'Full Seater (28) NB' },
+  { value: 'FS28B', label: 'Full Seater (28) BIS' },
+  { value: 'FS30NB', label: 'Full Seater (30) NB' },
+  { value: 'FS30B', label: 'Full Seater (30) BIS' },
+  { value: 'FS32NB', label: 'Full Seater (32) NB' },
+  { value: 'FS32B', label: 'Full Seater (32) BIS' },
+  { value: 'FS34NB', label: 'Full Seater (34) NB' },
+  { value: 'FS34B', label: 'Full Seater (34) BIS' },
+  { value: 'FS36NB', label: 'Full Seater (36) NB' },
+  { value: 'FS36B', label: 'Full Seater (36) BIS' },
+  { value: 'FS38NB', label: 'Full Seater (38) NB' },
+  { value: 'FS38B', label: 'Full Seater (38) BIS' },
+  { value: 'FS40NB', label: 'Full Seater (40) NB' },
+  { value: 'FS40B', label: 'Full Seater (40) BIS' },
+  { value: 'FS42NB', label: 'Full Seater (42) NB' },
+  { value: 'FS42B', label: 'Full Seater (42) BIS' },
+];
+
 const avlgender = [
   { label: 'M', value: 'M' },
   { label: 'F', value: 'F' },
@@ -77,4 +104,5 @@ export {
   csvTodayCollectionHeader,
   csvGeneratedDuesHeader,
   csvGenerateCollectionHeader,
+  dressDetails,
 };

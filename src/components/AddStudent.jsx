@@ -105,11 +105,8 @@ const AddStudent = () => {
   }
 
   return (
-    <div className="flex flex-col items-center justify-center w-screen h-screen mt-24 overflow-y-auto bg-dark ml-96">
-      <div
-        className="grid grid-cols-2 gap-5 justify-items-center "
-        style={{ overflow: 'auto', scrollbarWidth: 'none' }}
-      >
+    <div className="flex flex-col items-center justify-center w-screen h-full mt-16 mb-10 overflow-y-auto sm:mt-10 xl:ml-64 print:ml-0 print:bg-none">
+      <div className="flex flex-col md:grid md:grid-cols-2 lg:gap-2 lg:mx-4 lg:grid-cols-3 md:gap-2 print:hidden">
         <FormBox
           label={'Admission No.'}
           required={true}
@@ -134,24 +131,27 @@ const AddStudent = () => {
           setField={setMothersName}
           required
         ></FormBox>
-        <div className="flex flex-col items-start justify-center mt-5">
-          <label className={`text-2xl font-bold text-light`} rel="Grade">
+        <div className="flex flex-col items-start justify-center w-full mt-3 sm:mt-5">
+          <label
+            className={`sm:text-2xl font-bold text-light whitespace-nowrap`}
+            htmlFor="Gender"
+          >
             Gender *
           </label>
           <Select
             styles={{
-              control: (baseStyles, state) => ({
-                ...baseStyles,
-                fontSize: '26px',
-                width: '264px',
-                marginTop: '5px',
+              input: (basestyles, state) => ({
+                ...basestyles,
+                padding: 6,
               }),
             }}
+            className="w-full text-sm border rounded-md outline-none sm:text-xl border-appBar"
             placeholder={'Select Gender'}
             defaultValue={gender}
             onChange={setGender}
             options={avlgender}
             value={gender}
+            name="Gender"
           ></Select>
         </div>
         <FormBox
@@ -166,14 +166,17 @@ const AddStudent = () => {
           value={aadhar}
           setField={setAadhar}
         ></FormBox>
-        <div className="flex flex-col items-start justify-center mt-5">
-          <label className="text-2xl font-bold text-light" rel="adminPassword">
+        <div className="flex flex-col items-start justify-center mt-3 sm:mt-5">
+          <label
+            className={`sm:text-2xl font-bold text-light whitespace-nowrap`}
+            htmlFor="re-aadhar"
+          >
             Re-enter Aadhar*
           </label>
           <input
             className="p-3 text-xl font-bold border rounded-md outline-none text-appBar border-appBar"
             type="password"
-            name="adminPassword"
+            name="re-aadhar"
             value={checkaadhar}
             onChange={e => {
               setCheckAadhar(e.target.value);
@@ -194,19 +197,22 @@ const AddStudent = () => {
           value={altPhone}
           setField={setAltPhone}
         ></FormBox>
-        <div className="flex flex-col items-start justify-center mt-5">
-          <label className={`text-2xl font-bold text-light`} rel="Grade">
+        <div className="flex flex-col items-start justify-center w-full mt-3 sm:mt-5">
+          <label
+            className={`sm:text-2xl font-bold text-light whitespace-nowrap`}
+            htmlFor="Grade"
+          >
             Class*
           </label>
           <Select
             styles={{
-              control: (baseStyles, state) => ({
+              input: (baseStyles, state) => ({
                 ...baseStyles,
-                fontSize: '26px',
-                width: '264px',
-                marginTop: '5px',
+                padding: 6,
               }),
             }}
+            className="w-full text-sm border rounded-md outline-none sm:text-xl border-appBar"
+            name="Grade"
             placeholder={'Select Class'}
             defaultValue={grade}
             onChange={setgrade}
@@ -220,14 +226,18 @@ const AddStudent = () => {
           value={section}
           setField={setSection}
         ></FormBox>
-        <div className="flex flex-col items-start justify-center mt-5">
-          <label className={`text-2xl font-bold text-light`} rel="Grade">
+        <div className="flex flex-col items-start justify-center w-full mt-3 sm:mt-5">
+          <label
+            className={`sm:text-2xl font-bold text-light whitespace-nowrap`}
+            rel="DOB"
+          >
             DOB*
           </label>
           <DatePicker
             maxDate={new Date()}
             dateFormat="dd/MM/yyyy"
-            calendarIconClassName="text-xl right-2  items-center mt-2 hover:bg-inactive rounded-md hover:ease-in-out"
+            name="DOB"
+            calendarIconClassName="text-xl right-2   items-center mt-2 hover:bg-inactive rounded-md hover:ease-in-out"
             className="p-3 text-xl font-bold border rounded-md outline-none h-14 text-appBar"
             showIcon
             toggleCalendarOnIconClick
@@ -235,13 +245,16 @@ const AddStudent = () => {
             onChange={date => setDOB(date)}
           />
         </div>
-        <div className="flex flex-col items-start justify-center w-full col-span-2 mt-5">
-          <label className="text-2xl font-bold text-light" rel="adminPassword">
+        <div className="flex flex-col items-start justify-center w-full mt-5 sm:col-span-2">
+          <label
+            className={`sm:text-2xl font-bold text-light whitespace-nowrap`}
+            htmlFor="Address"
+          >
             Address*
           </label>
           <input
-            className="w-full p-3 text-xl font-bold border rounded-md outline-none text-appBar border-appBar"
-            name="adminPassword"
+            className="w-full p-3 text-sm font-bold border rounded-md outline-none sm:text-xl text-appBar border-appBar"
+            name="Address"
             value={address}
             onChange={e => {
               setAddress(e.target.value);
@@ -249,11 +262,10 @@ const AddStudent = () => {
           ></input>
         </div>
 
-        <div className="flex flex-row items-start justify-around w-full col-span-2">
+        <div className="flex flex-col items-center w-full col-span-2 gap-4 text-center sm:gap-5 sm:items-start sm:justify-around sm:flex-row">
           <div className="flex items-center justify-center mt-2">
             <label
-              className="text-2xl font-bold text-light"
-              rel="adminPassword"
+              className={`sm:text-2xl font-bold text-light whitespace-nowrap`}
               htmlFor="hostelFacility"
             >
               Hostel Facility
@@ -271,17 +283,16 @@ const AddStudent = () => {
           </div>
           <div className="flex items-center justify-center mt-2">
             <label
-              className="text-2xl font-bold text-light"
-              rel="adminPassword"
-              htmlFor="hostelFacility"
+              className={`sm:text-2xl font-bold text-light whitespace-nowrap`}
+              htmlFor="transport"
             >
               Transport
             </label>
             <input
               className="w-6 h-6 ml-3 text-blue-600 bg-gray-100 border-gray-300 rounded-8 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
               type="checkbox"
-              id="hostelFacility"
-              name="hostelFacility"
+              id="transport"
+              name="transport"
               checked={transport}
               onChange={e => {
                 setTransport(e.target.checked);
@@ -290,17 +301,16 @@ const AddStudent = () => {
           </div>
           <div className="flex items-center justify-center mt-2">
             <label
-              className="text-2xl font-bold text-light"
-              rel="adminPassword"
-              htmlFor="hostelFacility"
+              className={`sm:text-2xl font-bold text-light whitespace-nowrap`}
+              htmlFor="feewaiver"
             >
               Fee Waiver
             </label>
             <input
               className="w-6 h-6 ml-3 text-blue-600 bg-gray-100 border-gray-300 rounded-8 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
               type="checkbox"
-              id="hostelFacility"
-              name="hostelFacility"
+              id="feewaiver"
+              name="feewaiver"
               checked={feeWaiver}
               onChange={e => {
                 setFeeWaiver(e.target.checked);

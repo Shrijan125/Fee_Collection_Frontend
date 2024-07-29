@@ -1,29 +1,12 @@
 import React, { useRef } from 'react';
-import Button from './Button';
-import * as XLSX from 'xlsx';
-import toast, { Toaster } from 'react-hot-toast';
-import { BASE_URL } from '../api/adminRequests';
+import Button from '../Button';
+import { BASE_URL } from '../../api/adminRequests';
 import axios from 'axios';
-
-const BulkAddStudent = () => {
-  const fileData = useRef([]);
-  async function handleSubmit() {
-    if (fileData?.current.length === 0) {
-      toast.error('Please select a file', { position: 'top-right' });
-      return;
-    }
-    const url = BASE_URL + '/admin/addBulkStudent';
-    try {
-      const { data } = await axios.post(url, fileData?.current, {
-        withCredentials: true,
-      });
-      toast.success('Update Successfull!', { position: 'top-right' });
-    } catch (error) {
-      toast.error('Failed to upload data!', { position: 'top-right' });
-      return;
-    }
-  }
-  function handleFileUpload(event) {
+import * as XLSX from 'xlsx';
+import toast from 'react-hot-toast';
+const BulkUpdate = () => {
+    const fileData = useRef([]);
+    function handleFileUpload(event) {
     const file = event.target.files[0];
     const reader = new FileReader();
     reader.onload = e => {
@@ -34,8 +17,23 @@ const BulkAddStudent = () => {
       const json = XLSX.utils.sheet_to_json(sheet);
       fileData.current = json;
     };
-
-    reader.readAsArrayBuffer(file);
+    reader.readAsArrayBuffer(file); 
+  }
+  async function handleSubmit() {
+    if (fileData?.current.length === 0) {
+      toast.error('Please select a file', { position: 'top-right' });
+      return;
+    }
+    const url = BASE_URL + '/admin/updateDressBulk';
+    try {
+      const { data } = await axios.post(url, fileData?.current, {
+        withCredentials: true,
+      });
+      toast.success('Update Successfull!', { position: 'top-right' });
+    } catch (error) {
+      toast.error('Failed to upload data!', { position: 'top-right' });
+      return;
+    }
   }
   return (
     <div className="flex flex-col items-center justify-center w-screen h-screen mx-10 xl:ml-64 sm:mx-5">
@@ -67,4 +65,4 @@ const BulkAddStudent = () => {
   );
 };
 
-export default BulkAddStudent;
+export default BulkUpdate;

@@ -6,6 +6,7 @@ import toast, { Toaster } from 'react-hot-toast';
 import Button from './Button';
 import { useNavigate } from 'react-router-dom';
 import { CSVLink } from 'react-csv';
+import DatePrinter from './DatePrinter/DatePrinter';
 
 const FeeStructure = () => {
   const [data, setData] = useState([]);
@@ -39,39 +40,43 @@ const FeeStructure = () => {
   }
 
   return (
-    <div className="w-screen h-screen ml-96 bg-dark print:ml-0 print:bg-none">
+    <div className="w-screen h-screen xl:ml-64 k print:ml-0 print:bg-none">
+      <div className="flex items-center justify-center w-full h-screen text-xl text-white sm:hidden">
+        Need a Larger Screen to Display!
+      </div>
+      <DatePrinter></DatePrinter>
       {loading ? (
         <LoadingComponent></LoadingComponent>
       ) : (
-        <div className="mx-6 mt-16 print:mx-0">
+        <div className="hidden mx-6 mt-16 print:mt-0 print:mx-0 sm:block">
           <table className="w-full border-2 table-fixed border-light print:border-black">
             <thead>
               <tr className=" bg-appBar print:bg-none">
-                <th className="text-3xl border text-light print:text-black print:text-xl print:border-black">
+                <th className="border lg:text-2xl text-light print:text-black print:text-xl print:border-black">
                   Class
                 </th>
-                <th className="text-3xl border text-light print:text-black print:text-xl print:border-black ">
+                <th className="border lg:text-2xl text-light print:text-black print:text-xl print:border-black ">
                   Prosp & RegFee
                 </th>
-                <th className="text-3xl border text-light print:text-black print:text-xl print:border-black">
+                <th className="border lg:text-2xl text-light print:text-black print:text-xl print:border-black">
                   Adm Fee
                 </th>
-                <th className="text-3xl border text-light print:text-black print:text-xl print:border-black">
+                <th className="border lg:text-2xl text-light print:text-black print:text-xl print:border-black">
                   Annual Charge
                 </th>
-                <th className="text-3xl border text-light print:text-black print:text-xl print:border-black">
+                <th className="border lg:text-2xl text-light print:text-black print:text-xl print:border-black">
                   Tuition Fee
                 </th>
-                <th className="text-3xl border text-light print:text-black print:text-xl print:border-black">
+                <th className="border lg:text-2xl text-light print:text-black print:text-xl print:border-black">
                   Lab Charge
                 </th>
-                <th className="text-3xl border text-light print:text-black print:text-xl print:border-black">
+                <th className="border lg:text-2xl text-light print:text-black print:text-xl print:border-black">
                   Stat.Fee
                 </th>
-                <th className="text-3xl border text-light print:text-black print:text-xl print:border-black">
+                <th className="border lg:text-2xl text-light print:text-black print:text-xl print:border-black">
                   Exam Fee
                 </th>
-                <th className="text-3xl border text-light print:text-black print:text-xl print:border-black">
+                <th className="border lg:text-2xl text-light print:text-black print:text-xl print:border-black">
                   Total Fee
                 </th>
               </tr>
@@ -80,7 +85,7 @@ const FeeStructure = () => {
               {data.map(item => {
                 return (
                   <tr key={item.grade}>
-                    <td className="text-3xl text-center border bg-appBar print:bg-none text-light print:text-black print:text-xl print:border-black ">
+                    <td className="text-center border lg:text-2xl bg-appBar print:bg-none text-light print:text-black print:text-xl print:border-black ">
                       {item.grade}
                     </td>
                     <td className="text-xl text-center transition-all duration-300 'hover:cursor-pointer hover:ease-in-out hover:bg-light hover:border-appBar ' delay-150 border hover:text-appBar text-light print:text-black print:text-xl print:border-black">
@@ -115,17 +120,15 @@ const FeeStructure = () => {
           <div className="flex justify-center gap-3 print:hidden">
             <Button text={'Update'} onClick={clickHandler}></Button>
             <Button text={'Print'} onClick={handlePrint}></Button>
-            <CSVLink
-              data={data}
-              // headers={csvmonthsHeader}
-              filename={'FeeStructure.csv'}
-            >
+            <CSVLink data={data} filename={'FeeStructure.csv'}>
               <Button text={'Download'}></Button>
             </CSVLink>
           </div>
-          <p className="mt-5 text-2xl text-center text-light print:text-black">
-            <span className="text-3xl text-appBar">Note:</span> Stationary Fee
-            and Exam Fee are not part of total fee.
+          <p className="mt-5 text-center lg:text-2xl text-light print:text-black">
+            <span className="text-2xl lg:text-3xl text-appBar print:text-black print:text-xl">
+              Note:
+            </span>{' '}
+            Stationary Fee and Exam Fee are not part of total fee.
           </p>
         </div>
       )}

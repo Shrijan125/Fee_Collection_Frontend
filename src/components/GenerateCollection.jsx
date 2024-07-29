@@ -49,10 +49,13 @@ const GenerateCollection = () => {
   }
 
   return (
-    <div className="flex flex-col items-center justify-center w-screen h-screen gap-5 ml-96 bg-dark">
-      <div className="flex gap-8">
+    <div className="flex flex-col items-center justify-center w-screen h-screen gap-5 xl:ml-64">
+      <div className="gap-8 sm:flex">
         <div className="flex flex-col items-start justify-center mt-5">
-          <label className={`text-2xl font-bold text-light`} rel="Grade">
+          <label
+            className={`sm:text-2xl font-bold text-light whitespace-nowrap`}
+            rel="startDate"
+          >
             Start Date *
           </label>
           <DatePicker
@@ -64,11 +67,15 @@ const GenerateCollection = () => {
             showIcon
             toggleCalendarOnIconClick
             selected={startDate}
+            name="startDate"
             onChange={date => setStartDate(date)}
           />
         </div>
         <div className="flex flex-col items-start justify-center mt-5">
-          <label className={`text-2xl font-bold text-light`} rel="Grade">
+          <label
+            className={`sm:text-2xl font-bold text-light whitespace-nowrap`}
+            rel="endDate"
+          >
             End Date *
           </label>
           <DatePicker
@@ -78,6 +85,7 @@ const GenerateCollection = () => {
             calendarIconClassName="text-xl right-2  items-center mt-1 hover:bg-inactive rounded-md hover:ease-in-out"
             className="w-full h-12 rounded-md"
             showIcon
+            name="endDate"
             toggleCalendarOnIconClick
             selected={endDate}
             onChange={date => setEndDate(date)}

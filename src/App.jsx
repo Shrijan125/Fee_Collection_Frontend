@@ -5,13 +5,15 @@ import Home from './container/Home';
 import AuthProvider from './contexts/AuthContext';
 import RequireAuth from './components/Auth/RequireAuth';
 import { Toaster } from 'react-hot-toast';
+import Test from './components/Test';
 
 const App = () => {
   return (
     <AuthProvider>
-      <div>
+      <div className="h-screen">
         <Routes>
           <Route path="/login" element={<Login></Login>}></Route>
+          <Route path="/test" element={<Test></Test>}></Route>
           <Route
             path="/*"
             element={

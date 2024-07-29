@@ -23,19 +23,17 @@ const GenerateDues = () => {
       return;
     }
     var start, end;
-    const startComp=parseInt(startMonth.value);
-    const endComp=parseInt(endMonth.value);
+    const startComp = parseInt(startMonth.value);
+    const endComp = parseInt(endMonth.value);
 
-    if (startComp ===3 || startComp === 4) start = (startComp - 3).toString();
+    if (startComp === 3 || startComp === 4) start = (startComp - 3).toString();
     else if (startComp >= 6 && startComp <= 11)
       start = (startComp - 4).toString();
     else start = (startComp + 8).toString();
 
     if (endComp === 3 || endComp === 4) end = (endComp - 3).toString();
-    else if (endComp >= 6 && endComp <= 11)
-      end = (endComp - 4).toString();
+    else if (endComp >= 6 && endComp <= 11) end = (endComp - 4).toString();
     else end = (endComp + 8).toString();
-
 
     if (end < start) {
       toast.error('Start Month is greater than end month', {
@@ -60,20 +58,23 @@ const GenerateDues = () => {
   }
 
   return (
-    <div className="flex flex-col items-center justify-center w-screen h-screen gap-5 ml-96 bg-dark">
+    <div className="flex flex-col items-center justify-center w-screen h-screen gap-5 xl:ml-64">
       <div className="flex flex-col items-start justify-center mt-5">
-        <label className={`text-2xl font-bold text-light`} rel="Grade">
+        <label
+          className={`font-semibold select-none sm:text-2xl sm:font-bold text-light whitespace-nowrap`}
+          htmlFor="startMonth"
+        >
           Start Month *
         </label>
         <Select
           styles={{
-            control: (baseStyles, state) => ({
-              ...baseStyles,
-              fontSize: '26px',
-              width: '264px',
-              marginTop: '10px',
+            input: (basestyles, state) => ({
+              ...basestyles,
+              padding: 6,
             }),
           }}
+          className=" w-[300px] text-sm border rounded-md outline-none sm:text-xl border-appBar"
+          name="startMonth"
           placeholder={'Select Month'}
           defaultValue={startMonth}
           onChange={setStartMonth}
@@ -82,18 +83,21 @@ const GenerateDues = () => {
         ></Select>
       </div>
       <div className="flex flex-col items-start justify-center mt-5">
-        <label className={`text-2xl font-bold text-light`} rel="Grade">
+        <label
+          className={`font-semibold select-none sm:text-2xl sm:font-bold text-light whitespace-nowrap`}
+          htmlFor="endMonth"
+        >
           End Month *
         </label>
         <Select
           styles={{
-            control: (baseStyles, state) => ({
-              ...baseStyles,
-              fontSize: '26px',
-              width: '264px',
-              marginTop: '10px',
+            input: (basestyles, state) => ({
+              ...basestyles,
+              padding: 6,
             }),
           }}
+          className="w-[300px] text-sm border rounded-md outline-none sm:text-xl border-appBar"
+          name="endMonth"
           placeholder={'Select Month'}
           defaultValue={endMonth}
           onChange={setEndMonth}
@@ -102,18 +106,21 @@ const GenerateDues = () => {
         ></Select>
       </div>
       <div className="flex flex-col items-start justify-center mt-5">
-        <label className={`text-2xl font-bold text-light`} rel="Grade">
+        <label
+          className={`font-semibold select-none sm:text-2xl sm:font-bold text-light whitespace-nowrap`}
+          rel="Grade"
+        >
           Grade
         </label>
         <Select
           styles={{
-            control: (baseStyles, state) => ({
-              ...baseStyles,
-              fontSize: '26px',
-              width: '264px',
-              marginTop: '10px',
+            input: (basestyles, state) => ({
+              ...basestyles,
+              padding: 6,
             }),
           }}
+          className="w-[300px] text-sm border rounded-md outline-none sm:text-xl border-appBar"
+          name="Grade"
           placeholder={'Select Grade'}
           defaultValue={endMonth}
           onChange={setGrade}

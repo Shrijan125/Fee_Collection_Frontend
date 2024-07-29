@@ -27,15 +27,15 @@ const UpdateFee = () => {
       clearTimeout(timeoutRef.current);
     }
     if (
-      selectedGrade == null ||
-      AdmFee == '' ||
-      AnnualCharge == '' ||
-      TuitionFee == '' ||
-      LabCharge == '' ||
-      ProsReg == '' ||
-      StationaryFee == '' ||
-      ExamFee == '' ||
-      TotalFee == ''
+      selectedGrade === null ||
+      AdmFee === '' ||
+      AnnualCharge === '' ||
+      TuitionFee === '' ||
+      LabCharge === '' ||
+      ProsReg === '' ||
+      StationaryFee === '' ||
+      ExamFee === '' ||
+      TotalFee === ''
     ) {
       toast.error('All fields are mandatory', { position: 'top-right' });
       return;
@@ -90,22 +90,21 @@ const UpdateFee = () => {
   }, [selectedGrade, data]);
 
   return (
-    <div className="flex flex-col items-center justify-center w-screen h-screen bg-dark ml-96 print:hidden">
+    <div className="flex flex-col items-center justify-center w-screen h-screen overflow-y-auto xl:ml-64 print:hidden">
       <Select
         styles={{
-          control: baseStyles => ({
-            ...baseStyles,
-            fontSize: '26px',
-            width: '264px',
-            marginTop: '5px',
+          input: (basestyles, state) => ({
+            ...basestyles,
+            padding: 6,
           }),
         }}
+        className="sm:w-[400px] text-sm border rounded-md outline-none sm:text-xl border-appBar"
         placeholder={'Select Class'}
         defaultValue={selectedGrade}
         onChange={setSelectedGrade}
         options={grades}
       />
-      <div className="grid grid-cols-2 gap-5 justify-items-center">
+      <div className="sm:grid sm:grid-cols-2 sm:gap-5 justify-items-center">
         <FormBox
           label={'Pros&Reg Fee'}
           value={ProsReg}

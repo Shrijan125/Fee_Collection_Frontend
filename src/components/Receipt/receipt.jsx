@@ -23,7 +23,7 @@ const Receipt = ({
   statFee2P,
   examFee2,
   examFee2P,
-  statFee1P
+  statFee1P,
 }) => {
   return (
     <div className="hidden print:gap-2 print:h-screen print:grid-cols-2 print:w-screen print:grid">
@@ -83,14 +83,14 @@ const Receipt = ({
             <div>{`\u20B9${labcharge}`}</div>
           </div>
         )}
-       
-         {annualFeeP && (
+
+        {annualFeeP && (
           <div className="flex items-center justify-between mx-2">
             <span>Annual Fee:</span>
             <div>{`\u20B9${annualFee}`}</div>
           </div>
         )}
-         {statFee1P  && (
+        {statFee1P && (
           <div className="flex items-center justify-between mx-2">
             <span>Stat. Fee(Apr):</span>
             <div>{`\u20B9${statFee1}`}</div>
@@ -196,14 +196,14 @@ const Receipt = ({
             <div>{`\u20B9${labcharge}`}</div>
           </div>
         )}
-       
-         {annualFeeP && (
+
+        {annualFeeP && (
           <div className="flex items-center justify-between mx-2">
             <span>Annual Fee:</span>
             <div>{`\u20B9${annualFee}`}</div>
           </div>
         )}
-         {statFee1P  && (
+        {statFee1P && (
           <div className="flex items-center justify-between mx-2">
             <span>Stat. Fee(Apr):</span>
             <div>{`\u20B9${statFee1}`}</div>

@@ -1,30 +1,31 @@
+import { UserRoundSearch } from 'lucide-react';
 import React from 'react';
 
 const ButtonWithIcon = ({ label, value, setValue, onClickHandler, src }) => {
   return (
-    <div className="flex flex-col items-start justify-center mt-5">
-      <form>
-        <label htmlFor="search" className="text-2xl font-bold text-light">
+    <div className="flex flex-row items-center justify-center mt-3 sm:mt-5">
+      <div className="flex flex-col w-5/6">
+        <label
+          htmlFor="search"
+          className="font-bold sm:text-2xl text-light whitespace-nowrap"
+        >
           {label}
         </label>
-        <div className="relative">
-          <div className="absolute flex items-center start-0"></div>
-          <input
-            type="text"
-            id="search"
-            className="p-3 text-xl font-bold border rounded-md outline-none text-appBar border-appBar"
-            onChange={e => setValue(e.target.value)}
-            value={value}
-          />
-          <button
-            type="button"
-            className=" hover:bg-slate-300 hover:rounded-md absolute end-2.5 bottom-2.5 px-4 py-2 hover:cursor-pointer transition-all duration-300 delay-150 hover:ease-in-out"
-            onClick={onClickHandler}
-          >
-            <img src={src} alt="search_img" height={20} width={20}></img>
-          </button>
-        </div>
-      </form>
+        <input
+          type="text"
+          id="search"
+          className="p-3 text-sm font-bold border-l outline-none rounded-l-md border-y sm:text-xl text-appBar border-appBar"
+          onChange={e => setValue(e.target.value)}
+          value={value}
+        />
+      </div>
+      <button
+        type="button"
+        className="sm:p-[14px] p-[10px] transition-all duration-300 delay-150 bg-light mt-6 sm:mt-8 w-min h-min rounded-r-md hover:bg-slate-300 hover:cursor-pointer hover:ease-in-out"
+        onClick={onClickHandler}
+      >
+        <UserRoundSearch />
+      </button>
     </div>
   );
 };

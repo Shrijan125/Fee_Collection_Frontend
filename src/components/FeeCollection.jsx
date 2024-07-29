@@ -70,7 +70,7 @@ const FeeCollection = () => {
       prevDues: '',
       discount: '',
       receiptNo: '',
-      labCharge:''
+      labCharge: '',
     });
     setAnnFee(false);
     setexm1(false);
@@ -157,9 +157,10 @@ const FeeCollection = () => {
     formData?.feeForMonth.forEach(element => {
       monthsUrl = monthsUrl.concat(`&months=${element.value}`);
     });
-    const fee=(parseInt(formData?.labCharge || 0)+parseInt(formData?.tutFee || 0)).toString();
-    const url =
-      BASE_URL + `/admin/calculateFee?tutfee=${fee}${monthsUrl}`;
+    const fee = (
+      parseInt(formData?.labCharge || 0) + parseInt(formData?.tutFee || 0)
+    ).toString();
+    const url = BASE_URL + `/admin/calculateFee?tutfee=${fee}${monthsUrl}`;
     axios
       .get(url, { withCredentials: true })
       .then(data => {
@@ -287,7 +288,7 @@ const FeeCollection = () => {
         prevDues: FeeDetails?.findFeeDetails?.dues,
         discount: FeeDetails?.findFeeDetails?.discount,
         receiptNo: FeeDetails?.receiptNumber?.count,
-        labCharge:FeeDetails?.getFees?.LabCharge
+        labCharge: FeeDetails?.getFees?.LabCharge,
       };
 
       for (let i = 0; i <= 9; i++) {
@@ -318,8 +319,8 @@ const FeeCollection = () => {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center w-screen h-screen bg-dark ml-96 print:ml-0 print:bg-none">
-      <div className="grid grid-cols-4 gap-2 print:hidden">
+    <div className="flex flex-col items-center justify-center w-screen h-full mt-16 mb-10 overflow-y-auto sm:mt-10 xl:ml-64 print:ml-0 print:bg-none">
+      <div className="flex flex-col md:grid md:grid-cols-2 lg:gap-2 lg:mx-4 lg:grid-cols-3 md:gap-2 print:hidden">
         <ButtonWithIcon
           src={'/assets/search.png'}
           onClickHandler={onClickHandler}
@@ -348,7 +349,9 @@ const FeeCollection = () => {
         <FormBox
           label={'Tuition & Lab Fee'}
           disabled
-          value={(parseInt(formData?.labCharge || 0)+parseInt(formData?.tutFee || 0)).toString()}
+          value={(
+            parseInt(formData?.labCharge || 0) + parseInt(formData?.tutFee || 0)
+          ).toString()}
           setField={value => handleChange('tutFee', value)}
         />
         <FormBox
@@ -418,24 +421,27 @@ const FeeCollection = () => {
           setField={value => handleChange('discount', value)}
         />
         <div className="flex flex-col items-start justify-center mt-5">
-          <label className={`text-2xl font-bold text-light`} rel="Grade">
+          <label
+            className={`sm:text-2xl font-bold text-light whitespace-nowrap`}
+            htmlFor="months"
+          >
             Months
           </label>
           <Select
             styles={{
-              control: baseStyles => ({
-                ...baseStyles,
-                fontSize: '26px',
-                width: '264px',
-                marginTop: '4px',
+              input: (basestyles, state) => ({
+                ...basestyles,
+                padding: 6,
               }),
             }}
+            className="w-full text-sm border rounded-md outline-none bg-appBar sm:text-xl border-appBar"
             placeholder={'Select Month'}
             defaultValue={formData?.feeForMonth}
             onChange={value => handleChange('feeForMonth', value)}
             options={dues.current}
             isMulti={true}
             value={formData?.feeForMonth}
+            name="months"
           />
         </div>
         <FormBox
@@ -444,18 +450,7 @@ const FeeCollection = () => {
           value={formData.receiptNo}
           setField={value => handleChange('receiptNo', value)}
         />
-        <div className="flex flex-col items-start justify-center w-full col-span-2 mt-5">
-          <label className="text-2xl font-bold text-light" rel="adminPassword">
-            Description
-          </label>
-          <input
-            className="w-full p-3 text-xl font-bold border rounded-md outline-none text-appBar border-appBar"
-            type="text"
-            name="adminPassword"
-            value={formData.description}
-            onChange={e => handleChange('description', e.target.value)}
-          />
-        </div>
+
         <FormBox label={'Late Fine'} disabled value={fine} setField={setFine} />
         <FormBox label={'Total Amount'} value={amount} setField={setAmount} />
         <FormBox
@@ -464,10 +459,25 @@ const FeeCollection = () => {
           setField={settxnno}
         />
         <FormBox label={'Bank Name'} value={bankName} setField={setBankName} />
+        <div className="flex flex-col items-start justify-center w-full mt-5 md:col-span-2 lg:col-span-3">
+          <label
+            className={`sm:text-2xl font-bold text-light whitespace-nowrap`}
+            htmlFor={'description'}
+          >
+            Description
+          </label>
+          <input
+            className="w-full p-3 text-sm font-bold border rounded-md outline-none sm:text-xl text-appBar border-appBar"
+            type="text"
+            name="description"
+            value={formData.description}
+            onChange={e => handleChange('description', e.target.value)}
+          />
+        </div>
       </div>
-      <div className="grid grid-cols-5 gap-8">
+      <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 md:gap-8">
         {!formData.annDevChargeP && (
-          <div className="mt-5 print:hidden">
+          <div className="mt-5 print:hidden ">
             <CheckBox
               label={'Annual Fee'}
               value={annFee}
@@ -549,15 +559,15 @@ const FeeCollection = () => {
         discount={formData?.discount}
         labcharge={formData?.labCharge}
         statFee1={formData?.stat1}
-        statFee1P={formData?.stat1P?false:stat1}
+        statFee1P={formData?.stat1P ? false : stat1}
         statFee2={formData?.stat2}
-        statFee2P={formData?.stat2P?false:stat2}
+        statFee2P={formData?.stat2P ? false : stat2}
         examFee1={formData?.exam1}
-        examFee1P={formData?.exam1P?false:exm1}
+        examFee1P={formData?.exam1P ? false : exm1}
         examFee2={formData?.exam2}
-        examFee2P={formData?.exam2P?false:exm2}
+        examFee2P={formData?.exam2P ? false : exm2}
         annualFee={formData?.annDevCharge}
-        annualFeeP={formData?.annDevChargeP?false:annFee}
+        annualFeeP={formData?.annDevChargeP ? false : annFee}
       ></Receipt>
     </div>
   );
